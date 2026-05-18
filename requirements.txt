@@ -1,0 +1,13 @@
+kafka-python
+requests
+boto3
+psycopg2-binary
+python-dotenv
+pandas
+numpy
+pyspark
+dbt-postgres
+streamlit
+plotly
+pyarrow
+sqlalchemy

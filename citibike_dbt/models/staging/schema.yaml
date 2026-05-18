@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_station_status
+    description: "Cleaned staging model for live Citi Bike station availability events."
+    columns:
+      - name: station_id
+        description: "Unique Citi Bike station identifier."
+        tests:
+          - not_null
+
+      - name: ingestion_time
+        description: "Timestamp when the station status event was inserted."
+        tests:
+          - not_null
+
+  - name: stg_station_information
+    description: "Cleaned staging model for Citi Bike station metadata."
+    columns:
+      - name: station_id
+        description: "Unique Citi Bike station identifier."
+        tests:
+          - not_null
+          - unique
+
+      - name: station_name
+        description: "Human-readable station name."
+        tests:
+          - not_null
