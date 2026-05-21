@@ -22,7 +22,7 @@
 - 🧱 **Built a data lake to warehouse architecture** by persisting raw events to **AWS S3** and loading query-ready datasets into **PostgreSQL/Supabase**.
 - 📦 **Redesigned ingestion from per-event JSON writes to JSONL microbatches**, reducing S3 object count by **99%+** from roughly **143K individual objects** to compact **1K-5K event batches**.
 - ✅ **Implemented fault-aware batched ingestion** with manual Kafka offset commits, database transactions, S3 persistence, and rollback behavior when a batch fails.
-- 🔥 **Developed PySpark, dbt, and advanced SQL transformations** to convert raw streaming data into compressed Parquet datasets, reducing storage footprint by approximately **99%** compared with raw JSON-style storage.
+- 🔥 **Developed PySpark, dbt, and advanced SQL transformation workflows** to convert raw streaming data into compressed Parquet datasets, reducing cloud storage usage by **99.1%**.
 - 📊 **Created a Streamlit analytics dashboard** for continuously ingested Kafka event data, surfacing operational trends from live Citi Bike station availability.
 
 ---
@@ -481,4 +481,4 @@ Built by [ciskander2](https://github.com/ciskander2) as an end-to-end data engin
 
 **Python, Apache Kafka, Docker, PostgreSQL, SQL, PySpark, dbt, AWS S3, ETL, Streamlit**
 
-Engineered a real-time streaming pipeline processing **700K+ Citi Bike station-status events** using Apache Kafka, containerized Python producers/consumers, and fault-tolerant batched ingestion workflows with manual offset management. Built a cloud-based **data lake to warehouse architecture** by persisting raw streaming events to AWS S3 and loading transformed datasets into PostgreSQL/Supabase. Developed PySpark, dbt, and advanced SQL transformation workflows to convert raw streaming data into compressed Parquet datasets, reducing cloud storage footprint by approximately **99%**, and built a Streamlit dashboard visualizing bike availability, dock congestion, and mobility demand trends from continuously ingested Kafka event data.
+Engineered a real-time streaming pipeline processing **700K+ Citi Bike station-status events** using Apache Kafka, containerized Python producers/consumers, and fault-tolerant batched ingestion workflows with manual offset management. Built a cloud-based **data lake to warehouse architecture** by persisting raw streaming events to AWS S3 and loading transformed datasets into PostgreSQL/Supabase. Developed PySpark, dbt, and advanced SQL transformation workflows to convert raw streaming data into compressed Parquet datasets, reducing cloud storage usage by **99.1%**, and built a Streamlit dashboard visualizing bike availability, dock congestion, and mobility demand trends from continuously ingested Kafka event data.
