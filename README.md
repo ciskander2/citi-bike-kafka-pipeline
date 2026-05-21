@@ -432,7 +432,20 @@ This pipeline can answer operational questions such as:
 
 ## 🧪 Testing and Validation
 
-There is no dedicated Python test suite in this repository yet, but the pipeline can be validated with these checks:
+This repository includes a GitHub Actions CI workflow at:
+
+```text
+.github/workflows/ci.yml
+```
+
+The workflow runs automatically on pushes and pull requests to `main`. It validates:
+
+- Python syntax for files in `src/` and `dashboard/`
+- Docker Compose configuration
+- dbt installation
+- dbt project parsing with a generated CI profile
+
+You can also run additional checks locally:
 
 ```bash
 # Confirm containers are running
@@ -465,7 +478,6 @@ Suggested future tests:
 - Add a Docker profile for producer, consumer, Spark, dbt, and Streamlit services
 - Add Great Expectations or Soda checks for data quality
 - Add orchestration with Airflow, Dagster, or Prefect
-- Add CI checks for Python formatting, dbt compilation, and SQL linting
 - Add Kafka Connect or Redpanda alternatives for easier local development
 - Add dashboard charts with Plotly for richer interactive exploration
 
