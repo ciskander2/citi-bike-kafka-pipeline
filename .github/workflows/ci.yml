@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate Citi Bike pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate Python syntax
+        run: |
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+
+          for folder in ("src", "dashboard"):
+              for path in Path(folder).rglob("*.py"):
+                  ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+                  print(f"syntax ok: {path}")
+          PY
+
+      - name: Validate Docker Compose config
+        run: docker compose config --quiet
+
+      - name: Install dbt
+        run: python -m pip install "dbt-postgres>=1.8,<2"
+
+      - name: Create CI dbt profile
+        run: |
+          mkdir -p .github/dbt
+          cat > .github/dbt/profiles.yml <<'YAML'
+          citibike_dbt:
+            target: ci
+            outputs:
+              ci:
+                type: postgres
+                host: localhost
+                user: postgres
+                password: postgres
+                port: 5432
+                dbname: citibike
+                schema: public
+                threads: 1
+          YAML
+
+      - name: Parse dbt project
+        working-directory: citibike_dbt
+        run: dbt parse --profiles-dir ../.github/dbt
